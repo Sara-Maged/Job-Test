@@ -2,6 +2,7 @@ package com.example.JobManagementScv.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,12 +17,17 @@ public class Employee {
     private Instant hireDate;
     private Long salary;
     private Long commissionPct;
+//    private Long managerId;
 
     @ManyToOne // Many employees to one department
     @JoinColumn(name = "departmentId")
     private Department department;
 
-    @ManyToOne // Many employees to one job
-    @JoinColumn(name = "jobId")
-    private Job job;
+    @ManyToOne  // Many employees to one manager
+    @JoinColumn(name = "managerId")
+    private Employee manager;
+
+    // collection for employees managed by this employee
+//    @OneToMany(mappedBy = "manager")
+//    private List<Employee> managedEmployees;
 }

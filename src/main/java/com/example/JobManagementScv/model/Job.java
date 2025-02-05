@@ -18,4 +18,7 @@ public class Job {
     @ManyToMany(mappedBy = "jobs") // 'jobs' field in Task
     private Set<Task> tasks = new HashSet<>();
 
+    @ManyToOne // One employee to many jobs
+    @JoinColumn(name = "employeeId")
+    private Employee employee;
 }
