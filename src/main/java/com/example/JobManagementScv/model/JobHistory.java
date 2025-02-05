@@ -5,11 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table
+@Table(name = "JobHistory")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

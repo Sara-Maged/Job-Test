@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "Employee")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
