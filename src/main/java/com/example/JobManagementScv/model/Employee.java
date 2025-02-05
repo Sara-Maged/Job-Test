@@ -1,11 +1,19 @@
 package com.example.JobManagementScv.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +33,7 @@ public class Employee {
 
     @ManyToOne  // Many employees to one manager
     @JoinColumn(name = "managerId")
+    @ToString.Exclude // to prevent recursion
     private Employee manager;
 
     // collection for employees managed by this employee

@@ -1,12 +1,18 @@
 package com.example.JobManagementScv.model;
 
 import com.example.JobManagementScv.enums.Language;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class JobHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
