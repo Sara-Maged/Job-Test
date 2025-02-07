@@ -41,15 +41,7 @@ public class JobService {
 
     public Job createJob(Job job) {
         Job createdJob = jobRepository.save(job);
-        if(createdJob.getEmployee() != null) {
-            JobHistory jobHistory = new JobHistory();
-            Employee employee = employeeService.getEmployeeById(job.getEmployee().getEmployeeId());
-            jobHistory.setEmployee(employee);
-            jobHistory.setDepartment(employee.getDepartment());
-            jobHistory.setJob(job);
-            jobHistory.setStartDate(Instant.now());
-            jobHistoryService.createJobHistory(jobHistory);
-        }
+        jobHistoryService.createJobHistoryByJob(job);
         return createdJob;
     }
 
@@ -64,14 +56,7 @@ public class JobService {
         existingJob.setTasks(job.getTasks());
 
         Job updatedJob = jobRepository.save(existingJob);
-        if(updatedJob.getEmployee() != null) {
-            JobHistory jobHistory = new JobHistory();
-            jobHistory.setEmployee(job.getEmployee());
-            jobHistory.setDepartment(job.getEmployee().getDepartment());
-            jobHistory.setJob(job);
-            jobHistory.setStartDate(Instant.now());
-            jobHistoryService.createJobHistory(jobHistory);
-        }
+        jobHistoryService.createJobHistoryByJob(updatedJob);
         return convertToDto(updatedJob);
     }
 
