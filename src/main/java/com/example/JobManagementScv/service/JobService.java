@@ -2,9 +2,7 @@ package com.example.JobManagementScv.service;
 
 import com.example.JobManagementScv.dto.JobDTO;
 import com.example.JobManagementScv.dto.TaskDTO;
-import com.example.JobManagementScv.model.Employee;
 import com.example.JobManagementScv.model.Job;
-import com.example.JobManagementScv.model.JobHistory;
 import com.example.JobManagementScv.model.Task;
 import com.example.JobManagementScv.repository.JobRepository;
 import com.example.JobManagementScv.repository.TaskRepository;
@@ -12,7 +10,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -25,13 +22,11 @@ public class JobService {
     private final JobRepository jobRepository;
     private final TaskRepository taskRepository;
     private final JobHistoryService jobHistoryService;
-    private final EmployeeService employeeService;
 
-    public JobService(JobRepository jobRepository, TaskRepository taskRepository, JobHistoryService jobHistoryService, EmployeeService employeeService) {
+    public JobService(JobRepository jobRepository, TaskRepository taskRepository, JobHistoryService jobHistoryService) {
         this.jobRepository = jobRepository;
         this.taskRepository = taskRepository;
         this.jobHistoryService = jobHistoryService;
-        this.employeeService = employeeService;
     }
 
     public JobDTO getJobById(Long id) {
