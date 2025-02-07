@@ -1,19 +1,18 @@
 package com.example.JobManagementScv.model;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Job")
+@Table
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@EqualsAndHashCode(exclude = "tasks")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

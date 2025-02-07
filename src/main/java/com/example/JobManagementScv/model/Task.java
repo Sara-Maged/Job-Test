@@ -1,18 +1,20 @@
 package com.example.JobManagementScv.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Task")
-@AllArgsConstructor
+@Table
+@Getter
+@Setter
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = "jobs") // Exclude the jobs field
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +29,4 @@ public class Task {
             inverseJoinColumns = @JoinColumn(name = "jobId") // Foreign key for Job
     )
     private Set<Job> jobs = new HashSet<>();
-
 }

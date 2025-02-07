@@ -1,5 +1,7 @@
 package com.example.JobManagementScv.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +9,11 @@ import lombok.ToString;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Employee")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -25,18 +28,17 @@ public class Employee {
     private Instant hireDate;
     private Long salary;
     private Long commissionPct;
-//    private Long managerId;
 
     @ManyToOne // Many employees to one department
     @JoinColumn(name = "departmentId")
     private Department department;
 
     @ManyToOne  // Many employees to one manager
-    @JoinColumn(name = "managerId")
-    @ToString.Exclude // to prevent recursion
+    @JoinColumn(name = "managerId", referencedColumnName = "employeeId", nullable = true)
+    @JsonBackReference // Prevents infinite recursion
     private Employee manager;
 
-    // collection for employees managed by this employee
-//    @OneToMany(mappedBy = "manager")
-//    private List<Employee> managedEmployees;
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Allows proper serialization
+    private List<Employee> managedEmployees = new ArrayList<>();
 }

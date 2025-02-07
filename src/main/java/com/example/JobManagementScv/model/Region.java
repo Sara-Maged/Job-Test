@@ -1,15 +1,11 @@
 package com.example.JobManagementScv.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.Data;
 
 @Entity
-@Table(name = "Region")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table
 @Data
 public class Region {
     @Id

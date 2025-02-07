@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "JobHistory")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
