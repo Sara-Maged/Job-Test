@@ -60,7 +60,7 @@ public class JobController {
             @PathVariable Long taskId) {
 
         jobService.assignTaskToJob(jobId, taskId);
-        return new ResponseEntity<>(HttpStatus.OK); // Or 204 No Content
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{jobId}/tasks/{taskId}")
@@ -69,6 +69,6 @@ public class JobController {
             @PathVariable Long taskId) {
 
         jobService.removeTaskFromJob(jobId, taskId);
-        return new ResponseEntity<>(HttpStatus.OK); // Or 204 No Content
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
