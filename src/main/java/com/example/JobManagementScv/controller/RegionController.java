@@ -1,7 +1,6 @@
 package com.example.JobManagementScv.controller;
 
 import com.example.JobManagementScv.model.Region;
-import com.example.JobManagementScv.service.RegionClient;
 import com.example.JobManagementScv.service.RegionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ public class RegionController {
 
     @Autowired
     private RegionService regionService;
-
-    @Autowired
-    private RegionClient regionClient;
 
     @GetMapping
     public ResponseEntity<List<Region>> getAllRegions() {
@@ -46,10 +42,5 @@ public class RegionController {
     public ResponseEntity<Void> deleteRegion(@PathVariable Long regionId) {
         regionService.deleteRegion(regionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping("/client")
-    public ResponseEntity<List<Region>> getRegionsFromJobManagement() {
-        return ResponseEntity.ok(regionClient.fetchRegions());
     }
 }
